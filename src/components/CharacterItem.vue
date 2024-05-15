@@ -152,5 +152,11 @@ onMounted(async () => {
         height: initial;
         width: 100%;
         }
+        .location {
+            margin-top: 1.25rem;
+        }
+        .episode {
+            margin-top: 1.25rem;
+        }
     }
 </style>
