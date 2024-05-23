@@ -6,7 +6,7 @@ export default class RickMortyApi {
     static async getCharacters(url: string): Promise<IApiResponse> {
         const response = await fetch(url) 
         if(!response.ok) {
-            throw new Error('FAILED TO GET CHARACTERS')
+            throw new Error(`FAILED TO GET CHARACTERS`)
         }
         const data: IApiResponse = await response.json()
         data.results = data.results.map((el: ICharacter) => {
@@ -27,6 +27,7 @@ export default class RickMortyApi {
 
     static async getNameOfEpisode(url: string): Promise<string> {
         const response = await fetch(url)
+       
         if(!response.ok) {
             throw new Error('FAILED TO LOAD THE NAME OF EPISODE')
         }

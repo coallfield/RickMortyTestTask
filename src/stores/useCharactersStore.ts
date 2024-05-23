@@ -32,6 +32,19 @@ export const useCharactersStore = defineStore('characters', () => {
       
   }
 
+
+  const getNameOfEpisode = async (url: string): Promise<string> => {
+    try {
+      const response = await RickMortyApi.getNameOfEpisode(url)
+      return response
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error)
+      }
+      return `${url.slice(32).replace(/\//g, ' ')}`
+    }
+  }
+
   const setCharacters = (data: ICharacter[]) => {
       characters.value = data
   }
@@ -39,5 +52,5 @@ export const useCharactersStore = defineStore('characters', () => {
     responseInfo.value = data
   }
 
-  return { getCharacters, characters, responseInfo, inputName, selectedStatus, isLoading, errorMessage }
+  return { getCharacters, getNameOfEpisode, characters, responseInfo, inputName, selectedStatus, isLoading, errorMessage }
 })

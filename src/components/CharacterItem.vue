@@ -21,7 +21,7 @@
             </section>
             <section class="episode">
                 <div class="episode__first">First seen in: </div>
-                <div class="episode__name">{{ episodeName }}</div>
+                <div class="episode__name">{{ episodeName.charAt(0).toUpperCase() + episodeName.slice(1) }}</div>
             </section>
         </div>
     </div>
@@ -30,16 +30,17 @@
 
 <script lang="ts" setup>
 import type { ICharacter } from "@/interfaces/ICharacter"
-import RickMortyApi from "@/services/RickMortyApi";
+import { useCharactersStore } from "@/stores/useCharactersStore";
 import { onMounted, ref } from "vue";
 
+const characterStore = useCharactersStore()
 const episodeName = ref('')
 const props = defineProps<{
     character: ICharacter
 }>()
 
 onMounted(async () => {
-   episodeName.value = await RickMortyApi.getNameOfEpisode(props.character.episode)
+    episodeName.value = await characterStore.getNameOfEpisode(props.character.episode)
 })
 </script>
 
